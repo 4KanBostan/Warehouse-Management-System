@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.Adapter.CategoryAdapter
@@ -12,12 +14,20 @@ import com.furkanbostan.depoyonetim.Adapter.StoreProductAdapter
 import com.furkanbostan.depoyonetim.Model.CategoryModel
 import com.furkanbostan.depoyonetim.Model.StoreProductModel
 import com.furkanbostan.depoyonetim.R
+import com.furkanbostan.depoyonetim.databinding.FragmentStoreBinding
 
 
 class StoreFragment : Fragment() {
+    private var binding:FragmentStoreBinding?=null
+    private val rotateOpen:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim)}
+    private val rotateClose:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.rotate_close_anim)}
+    private val fromBottom:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.from_bottom_anim)}
+    private val toBottom:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.to_bottom_anim)}
 
-    private lateinit var adapter : StoreProductAdapter
-    private lateinit var recyclerView: RecyclerView
+    private var clicked =false
+
+    private lateinit var adapter_product : StoreProductAdapter
+    private lateinit var recyclerView_product: RecyclerView
     private lateinit var productArrayList : ArrayList<StoreProductModel>
 
     private lateinit var adapter_category : CategoryAdapter
@@ -25,19 +35,20 @@ class StoreFragment : Fragment() {
     private lateinit var categoryArrayList : ArrayList<CategoryModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(R.layout.fragment_store, container, false)
+        binding=FragmentStoreBinding.inflate(layoutInflater,container,false)
+        val view = binding!!.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataInitiailize()
-        val layoutManager = LinearLayoutManager(view.context)
-        recyclerView = view.findViewById(R.id.recyclerView_store_product)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.setHasFixedSize(true)
-        adapter = StoreProductAdapter(view.context,productArrayList)
-        recyclerView.adapter = adapter
+        val layoutManager_product = LinearLayoutManager(view.context)
+        recyclerView_product = view.findViewById(R.id.recyclerView_store_product)
+        recyclerView_product.layoutManager = layoutManager_product
+        recyclerView_product.setHasFixedSize(true)
+        adapter_product = StoreProductAdapter(view.context,productArrayList)
+        recyclerView_product.adapter = adapter_product
 
         val layoutManager_category = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
         recyclerView_category = view.findViewById(R.id.recyclerView_store_category)
@@ -45,7 +56,54 @@ class StoreFragment : Fragment() {
         recyclerView_category.setHasFixedSize(true)
         adapter_category = CategoryAdapter(view.context,categoryArrayList)
         recyclerView_category.adapter = adapter_category
+
+        binding!!.fabAdd.setOnClickListener{
+            onaAddFABClicked()
+        }
+
+        binding!!.fabSale.setOnClickListener{
+
+        }
+        binding!!.fabBuy.setOnClickListener{
+
+        }
+
+
     }
+
+    fun onaAddFABClicked(){
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+
+    fun setVisibility(clicked:Boolean){
+        if (!clicked){
+            binding!!.fabSale.visibility=View.VISIBLE
+            binding!!.fabBuy.visibility=View.VISIBLE
+        }else{
+            binding!!.fabSale.visibility=View.INVISIBLE
+            binding!!.fabBuy.visibility=View.INVISIBLE
+        }
+
+    }
+    fun setAnimation(clicked:Boolean){
+        if (!clicked){
+            binding!!.fabSale.startAnimation(fromBottom)
+            binding!!.fabBuy.startAnimation(fromBottom)
+            binding!!.fabAdd.startAnimation(rotateOpen)
+
+
+        }else{
+            binding!!.fabSale.startAnimation(toBottom)
+            binding!!.fabBuy.startAnimation(toBottom)
+            binding!!.fabAdd.startAnimation(rotateClose)
+        }
+    }
+
+
+
+
 
 
     private fun dataInitiailize(){
