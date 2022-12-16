@@ -1,5 +1,8 @@
 package com.furkanbostan.depoyonetim.Store
 
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.Adapter.CategoryAdapter
@@ -19,6 +25,8 @@ import com.furkanbostan.depoyonetim.databinding.FragmentStoreBinding
 
 class StoreFragment : Fragment() {
     private var binding:FragmentStoreBinding?=null
+
+    //extended Fab Button Animasyon İşlemleri
     private val rotateOpen:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim)}
     private val rotateClose:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.rotate_close_anim)}
     private val fromBottom:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.from_bottom_anim)}
@@ -33,6 +41,8 @@ class StoreFragment : Fragment() {
     private lateinit var adapter_category : CategoryAdapter
     private lateinit var recyclerView_category: RecyclerView
     private lateinit var categoryArrayList : ArrayList<CategoryModel>
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=FragmentStoreBinding.inflate(layoutInflater,container,false)
@@ -62,11 +72,50 @@ class StoreFragment : Fragment() {
         }
 
         binding!!.fabSale.setOnClickListener{
-
+            Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_saleFragment)
         }
         binding!!.fabBuy.setOnClickListener{
-
+            Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_buyFragment)
         }
+
+        val searchView = view.findViewById<SearchView>(R.id.searchview) as SearchView
+        searchView.clearFocus()
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText !== null) {
+                    filteredList(newText)
+                }
+                return true
+            }
+
+        })
+
+    }
+
+    fun filteredList(text :String){
+        lateinit var filteredList :ArrayList<StoreProductModel>
+        filteredList = ArrayList<StoreProductModel>()
+
+            if (text.isNullOrEmpty()){
+                adapter_product.setFilteredList(productArrayList)
+            }else {
+                for (i in productArrayList) {
+                    if (i.name.toLowerCase() == text.toLowerCase()) {
+                        filteredList.add(i)
+                    }
+                }
+
+                if (filteredList.isEmpty()) {
+                    //Toast.makeText(context,"Ürün eşleşmiyor",Toast.LENGTH_SHORT).show()
+                } else {
+                    adapter_product.setFilteredList(filteredList)
+                }
+            }
 
 
     }
@@ -115,7 +164,8 @@ class StoreFragment : Fragment() {
         val product3 = StoreProductModel("Kazak",15,"Mavi, M beden",200,250)
         val product4 = StoreProductModel("Kazak",15,"Mavi, M beden",200,250)
         val product5 = StoreProductModel("Kazak",15,"Mavi, M beden",200,250)
-        val product6 = StoreProductModel("Kazak",15,"Mavi, M beden",200,250)
+        val product6 = StoreProductModel("Masa",15,"Mavi, M beden",200,250)
+
 
         productArrayList.add(product)
         productArrayList.add(product1)

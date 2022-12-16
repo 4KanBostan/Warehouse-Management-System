@@ -4,21 +4,28 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.Model.StoreProductModel
 import com.furkanbostan.depoyonetim.R
 
 class StoreProductAdapter (private val mcontext :Context,
-                           private val productModelList :ArrayList<StoreProductModel>): RecyclerView.Adapter<StoreProductAdapter.StoreProductHolder>(){
+                           private var productModelList :ArrayList<StoreProductModel>): RecyclerView.Adapter<StoreProductAdapter.StoreProductHolder>(){
 
+    fun setFilteredList(filteredList: ArrayList<StoreProductModel>) {
+        this.productModelList = filteredList
+        notifyDataSetChanged()
+    }
     inner class StoreProductHolder (view : View):RecyclerView.ViewHolder(view){
         var productName : TextView
         var productAdet : TextView
         var productDescription : TextView
         var productPurchase : TextView
         var productSales : TextView
+        var prdouctDetails:ImageView
 
 
         init {
@@ -27,6 +34,7 @@ class StoreProductAdapter (private val mcontext :Context,
             productDescription = view.findViewById(R.id.tv_product_details)
             productPurchase = view.findViewById(R.id.tv_product_satis)
             productSales = view.findViewById(R.id.tv_product_alis)
+            prdouctDetails = view.findViewById(R.id.tv_product_go_details)
 
         }
 
@@ -44,6 +52,9 @@ class StoreProductAdapter (private val mcontext :Context,
         holder.productDescription.text = product.description
         holder.productPurchase.text = product.purchase_price.toString()
         holder.productSales.text = product.sales_price.toString()
+        holder.prdouctDetails.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_productDetailsFragment)
+        }
 
     }
 

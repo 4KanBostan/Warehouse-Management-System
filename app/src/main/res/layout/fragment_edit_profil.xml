@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Home.EditProfilFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="18dp"
+                android:text="Furkan Bostan"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back_home_button"
+                app:layout_constraintTop_toTopOf="@+id/back_home_button" />
+
+            <ImageView
+                android:id="@+id/back_home_button"
+                android:layout_width="49dp"
+                android:layout_height="43dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="413dp"
@@ -13,7 +49,7 @@
         app:cardBackgroundColor="#A3CEF1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
         <ImageView
             android:id="@+id/imageView"
@@ -24,51 +60,99 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="408dp"
-        android:layout_height="312dp"
+        android:layout_width="411dp"
+        android:layout_height="398dp"
         android:layout_marginBottom="57dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.32999998">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <EditText
+                android:id="@+id/editTextTextPersonName5"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="LCW"
+                android:inputType="textPersonName"
+                android:textColor="#274C77"
+                android:textColorHint="#274C77"
+                app:layout_constraintStart_toStartOf="@+id/textView23"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="65dp"
+                android:layout_height="55dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/ic_baseline_update_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="E-Posta"
+                android:textColor="#251B1B"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="108dp"
-                android:layout_height="28dp"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="16dp"
                 android:text="Adı Soyadı"
                 android:textColor="#251B1B"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/textView19"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="İletişim Numarası"
+                android:textColor="#251B1B"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+            <TextView
                 android:id="@+id/textView21"
-                android:layout_width="141dp"
-                android:layout_height="31dp"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Pozisyonum"
                 android:textColor="#251B1B"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
             <TextView
                 android:id="@+id/textView22"
-                android:layout_width="259dp"
-                android:layout_height="32dp"
+                android:layout_width="263dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Sorumlu olduğu Mağaza"
                 android:textColor="#251B1B"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
@@ -76,7 +160,7 @@
             <EditText
                 android:id="@+id/editTextTextPersonName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="Furkan Bostan"
@@ -89,7 +173,7 @@
             <EditText
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="Müdür"
@@ -102,7 +186,7 @@
             <EditText
                 android:id="@+id/editTextTextPersonName3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="LCW"
@@ -112,28 +196,20 @@
                 app:layout_constraintStart_toStartOf="@+id/textView22"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
+            <EditText
+                android:id="@+id/editTextTextPersonName4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:textColor="#274C77"
+                android:textColorHint="#274C77"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="65dp"
-        android:layout_height="55dp"
-        android:src="@drawable/ic_baseline_update_24"
-        app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="@+id/textView23" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="293dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Bilgilerinizi güncelleştirmek için butona tıklayınız"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

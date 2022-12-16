@@ -1,17 +1,16 @@
 package com.furkanbostan.depoyonetim
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.furkanbostan.depoyonetim.databinding.ActivityMainBinding
-
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,8 +40,26 @@ class MainActivity : AppCompatActivity() {
             if (navDestination.id == R.id.editStoreFragment) {
                 bottomNav.visibility = View.GONE
             }
+            if (navDestination.id == R.id.loginFragment) {
+                bottomNav.visibility = View.GONE
+            }
 
         }
+
+        KeyboardVisibilityEvent.setEventListener(this, object: KeyboardVisibilityEventListener {
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                if(isOpen){
+
+                    bottomNav.setVisibility(View.INVISIBLE);
+
+                }else{
+
+                    bottomNav.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+        })
 
     }
 }
