@@ -1,26 +1,33 @@
 package com.furkanbostan.depoyonetim.Store
 
-import android.app.SearchManager;
 import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.furkanbostan.depoyonetim.API.ApiUtils
+import com.furkanbostan.depoyonetim.API.DepoApi
 import com.furkanbostan.depoyonetim.Adapter.CategoryAdapter
 import com.furkanbostan.depoyonetim.Adapter.StoreProductAdapter
 import com.furkanbostan.depoyonetim.Model.CategoryModel
 import com.furkanbostan.depoyonetim.Model.StoreProductModel
 import com.furkanbostan.depoyonetim.R
+import com.furkanbostan.depoyonetim.ViewModel.CityViewModel
 import com.furkanbostan.depoyonetim.databinding.FragmentStoreBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class StoreFragment : Fragment() {
@@ -52,6 +59,7 @@ class StoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //   DepoApi.retrofitService.getFın()
         dataInitiailize()
         val layoutManager_product = LinearLayoutManager(view.context)
         recyclerView_product = view.findViewById(R.id.recyclerView_store_product)
@@ -69,6 +77,7 @@ class StoreFragment : Fragment() {
 
         binding!!.fabAdd.setOnClickListener{
             onaAddFABClicked()
+            test1()
         }
 
         binding!!.fabSale.setOnClickListener{
@@ -82,7 +91,7 @@ class StoreFragment : Fragment() {
         searchView.clearFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-
+//bekle ben yapim izle
                 return false
             }
 
@@ -96,6 +105,45 @@ class StoreFragment : Fragment() {
         })
 
     }
+
+    fun test1(){
+        val kdi = ApiUtils.setCityDaoInterface()
+        val sehirTut=kdi.sehirCagir()
+        sehirTut.enqueue(object : Callback<List<CityViewModel>> {
+
+            override fun onResponse(call: Call<List<CityViewModel>>, response: Response<List<CityViewModel>>) {
+                if (response!=null){
+                    val sehirListe = response.body()
+
+                    for (k in sehirListe!!){
+                        Log.e("********","***********")
+                        Log.e("Sehir Id:", k.Id.toString())
+                        Log.e("Sehir NAme:", k.Name)
+                        //  Log.e("Stores Name:", k.Stores[1].Name)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<CityViewModel>>, t: Throwable) {
+                Log.e("Basaramadık abi",t.toString())
+            }
+        })
+
+    }
+    //f8 miş
+    // kanka neden girmiyor buraya
+    /* fun test(){
+         CoroutineScope(Dispatchers.IO).launch {
+             try{
+                 var asd = DepoApi;
+                 val t = DepoApi.retrofitService.sehirCagir()
+                 Log.e("Success!",t.toString())
+             }catch (e:Exception){
+                 Log.e("Error",e.message.toString())
+             }
+         }
+     }*/
 
     fun filteredList(text :String){
         lateinit var filteredList :ArrayList<StoreProductModel>
@@ -116,9 +164,8 @@ class StoreFragment : Fragment() {
                     adapter_product.setFilteredList(filteredList)
                 }
             }
-
-
     }
+
 
     fun onaAddFABClicked(){
         setVisibility(clicked)

@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:layout_marginStart="18dp"
-                android:text="Furkan Bostan"
+                android:text="Profil Ayarları"
                 android:textColor="#ffffffff"
                 android:textSize="20sp"
                 android:textStyle="italic"
@@ -35,7 +35,7 @@
                 android:id="@+id/back_home_button"
                 android:layout_width="49dp"
                 android:layout_height="43dp"
-                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:src="@drawable/ic_baseline_arrow_back_2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
