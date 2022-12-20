@@ -23,14 +23,14 @@
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
         <action
-            android:id="@+id/action_storeFragment_to_buyFragment"
-            app:destination="@id/buyFragment" />
-        <action
-            android:id="@+id/action_storeFragment_to_saleFragment"
-            app:destination="@id/saleFragment" />
-        <action
             android:id="@+id/action_storeFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_storeFragment_to_buyFragment4"
+            app:destination="@id/buyFragment4" />
+        <action
+            android:id="@+id/action_storeFragment_to_categoryAddFragment"
+            app:destination="@id/categoryAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -61,24 +61,6 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/buyFragment"
-        android:name="com.furkanbostan.depoyonetim.Store.BuyFragment"
-        android:label="fragment_buy"
-        tools:layout="@layout/fragment_buy" >
-        <action
-            android:id="@+id/action_buyFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/saleFragment"
-        android:name="com.furkanbostan.depoyonetim.Store.SaleFragment"
-        android:label="fragment_sale"
-        tools:layout="@layout/fragment_sale" >
-        <action
-            android:id="@+id/action_saleFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.furkanbostan.depoyonetim.Login.LoginFragment"
         android:label="fragment_login"
@@ -104,4 +86,18 @@
         android:name="com.furkanbostan.depoyonetim.Store.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/buyFragment4"
+        android:name="com.furkanbostan.depoyonetim.Store.BuyFragment"
+        android:label="fragment_buy"
+        tools:layout="@layout/fragment_buy" />
+    <fragment
+        android:id="@+id/categoryAddFragment"
+        android:name="com.furkanbostan.depoyonetim.Store.CategoryAddFragment"
+        android:label="fragment_category_add"
+        tools:layout="@layout/fragment_category_add" >
+        <action
+            android:id="@+id/action_categoryAddFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
+    </fragment>
 </navigation>

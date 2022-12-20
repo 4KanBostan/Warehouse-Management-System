@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_purchase_price"
+            android:id="@+id/tv_sale_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="12dp"
             android:gravity="center"
-            android:text="$200"
-            android:textColor="#D50000"
+            android:text="$230"
+            android:textColor="#31AE64"
             app:layout_constraintStart_toEndOf="@+id/textView50"
             app:layout_constraintTop_toTopOf="@+id/textView50"></TextView>
 
@@ -33,48 +33,47 @@
             app:srcCompat="@drawable/kazak"></ImageView>
 
         <TextView
-            android:id="@+id/tv_purchase_piece"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="25"
-            android:textColor="#121010"
-            app:layout_constraintStart_toStartOf="@+id/tv_purchase_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_purchase_name" />
-
-        <TextView
-            android:id="@+id/textView49"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="Adet satılmıştır"
-            android:textColor="#232020"
-            app:layout_constraintStart_toEndOf="@+id/tv_purchase_piece"
-            app:layout_constraintTop_toTopOf="@+id/tv_purchase_piece" />
-
-        <TextView
-            android:id="@+id/textView50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="Alış Fiyatı:"
-            android:textColor="#1B1818"
-            app:layout_constraintStart_toEndOf="@+id/textView49"
-            app:layout_constraintTop_toTopOf="@+id/textView49" />
-
-        <TextView
-            android:id="@+id/tv_purchase_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_sale_name"
+            android:layout_width="74dp"
+            android:layout_height="18dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Ürün Adı"
             android:textColor="#0A889C"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/product_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <TextView
+            android:id="@+id/tv_sale_piece"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="25"
+            android:textColor="#121010"
+            app:layout_constraintStart_toStartOf="@+id/tv_sale_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sale_name" />
+
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="Adet satılmıştır"
+            android:textColor="#232020"
+            app:layout_constraintStart_toEndOf="@+id/tv_sale_piece"
+            app:layout_constraintTop_toTopOf="@+id/tv_sale_piece" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Satış Fiyatı:"
+            android:textColor="#1B1818"
+            app:layout_constraintStart_toEndOf="@+id/textView49"
+            app:layout_constraintTop_toTopOf="@+id/textView49" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

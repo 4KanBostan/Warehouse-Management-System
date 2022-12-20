@@ -2,8 +2,7 @@ package com.furkanbostan.depoyonetim.ViewModel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-//https://localhost:7240/api/Cities
-//https://localhost:7240/api/Categories
+
 data class ProductViewModel(@SerializedName("id")
                             @Expose
                             val Id:Int,

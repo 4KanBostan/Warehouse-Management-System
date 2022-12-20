@@ -36,7 +36,7 @@
 
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/tv_storeName"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginStart="33dp"
@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/tv_prodNAme"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginStart="24dp"
@@ -59,11 +59,11 @@
                 android:textColor="#274C77"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView20"
-                app:layout_constraintTop_toTopOf="@+id/textView20" />
+                app:layout_constraintStart_toEndOf="@+id/tv_storeName"
+                app:layout_constraintTop_toTopOf="@+id/tv_storeName" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/tv_prodDetails"
                 android:layout_width="334dp"
                 android:layout_height="46dp"
                 android:layout_marginTop="12dp"
@@ -71,8 +71,8 @@
                 android:textColor="#274C77"
                 android:textSize="20sp"
                 android:textStyle="italic"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintStart_toStartOf="@+id/tv_storeName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_storeName" />
 
             <TextView
                 android:id="@+id/textView32"
@@ -93,8 +93,8 @@
                 android:text="Ürün adedi: "
                 android:textColor="#101112"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintStart_toStartOf="@+id/tv_prodDetails"
+                app:layout_constraintTop_toBottomOf="@+id/tv_prodDetails" />
 
             <TextView
                 android:id="@+id/textView33"
@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView32" />
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/tv_prodQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"

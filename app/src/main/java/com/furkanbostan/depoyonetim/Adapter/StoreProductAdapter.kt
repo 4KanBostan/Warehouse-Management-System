@@ -19,21 +19,24 @@ class StoreProductAdapter (private val mcontext :Context,
         this.productModelList = filteredList
         notifyDataSetChanged()
     }
+
     inner class StoreProductHolder (view : View):RecyclerView.ViewHolder(view){
         var productName : TextView
         var productAdet : TextView
         var productDescription : TextView
+        var productCategory : TextView
         var productPurchase : TextView
-        var productSales : TextView
+        var productSale: TextView
         var prdouctDetails:ImageView
 
 
         init {
-            productName = view.findViewById(R.id.tv_product_name)
+            productName = view.findViewById(R.id.tv_sale_name)
             productAdet =view.findViewById(R.id.product_adet)
             productDescription = view.findViewById(R.id.tv_product_details)
-            productPurchase = view.findViewById(R.id.tv_product_satis)
-            productSales = view.findViewById(R.id.tv_product_alis)
+            productCategory = view.findViewById(R.id.tv_product_category)
+            productPurchase = view.findViewById(R.id.tv_product_purchase)
+            productSale = view.findViewById(R.id.tv_product_sale)
             prdouctDetails = view.findViewById(R.id.tv_product_go_details)
 
         }
@@ -51,7 +54,8 @@ class StoreProductAdapter (private val mcontext :Context,
         holder.productAdet.text = product.adet.toString()
         holder.productDescription.text = product.description
         holder.productPurchase.text = product.purchase_price.toString()
-        holder.productSales.text = product.sales_price.toString()
+        holder.productCategory.text = product.category_name.toString()
+        holder.productSale.text = product.sale_price.toString()
         holder.prdouctDetails.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_productDetailsFragment)
         }

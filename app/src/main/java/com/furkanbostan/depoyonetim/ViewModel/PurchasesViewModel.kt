@@ -3,19 +3,19 @@ package com.furkanbostan.depoyonetim.ViewModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class PurchasesViewModel(@SerializedName("Id")
+data class PurchasesViewModel(@SerializedName("id")
                               @Expose
                               val Id: Int,
-                              @SerializedName("ProductId")
+                              @SerializedName("productId")
                               @Expose
                               val ProductId: Int,
-                              @SerializedName("Quantity")
+                              @SerializedName("quantity")
                               @Expose
                               val Quantity: Int,
-                              @SerializedName("Price")
+                              @SerializedName("price")
                               @Expose
                               val Price:Float,
-                              @SerializedName("Product")
+                              @SerializedName("product")
                               @Expose
                               val Product: ProductViewModel) {
 

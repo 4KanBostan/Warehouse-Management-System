@@ -10,7 +10,13 @@ import com.furkanbostan.depoyonetim.Model.CategoryModel
 import com.furkanbostan.depoyonetim.R
 
 class CategoryAdapter(private val mContext : Context,
-                      private val categoryArrayList: ArrayList<CategoryModel>):RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+                      private var categoryArrayList: ArrayList<CategoryModel>):RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+
+
+    fun setNewList(newList: ArrayList<CategoryModel>) {
+        this.categoryArrayList = newList
+        notifyDataSetChanged()
+    }
     inner class CategoryHolder (view : View):RecyclerView.ViewHolder(view){
         var category_name : TextView
 

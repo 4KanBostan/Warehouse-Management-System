@@ -22,12 +22,12 @@
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sale_name"
             app:srcCompat="@drawable/kazak"></ImageView>
 
         <TextView
-            android:id="@+id/tv_product_name"
-            android:layout_width="74dp"
+            android:id="@+id/tv_sale_name"
+            android:layout_width="wrap_content"
             android:layout_height="18dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -51,7 +51,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="44dp"
+            android:layout_marginEnd="75dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
             app:layout_constraintVertical_bias="1.0">
 
             <TextView
-                android:id="@+id/tv_product_alis"
+                android:id="@+id/tv_product_purchase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -68,20 +68,15 @@
                 android:textColor="#D50000"></TextView>
 
             <TextView
-                android:id="@+id/space"
+                android:id="@+id/tv_product_sale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="/"
-                android:textSize="20sp"></TextView>
-
-            <TextView
-                android:id="@+id/tv_product_satis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="$230"
-                android:textColor="#31AE64"></TextView>
+                android:text="$200"
+                android:textColor="#409744"></TextView>
+
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

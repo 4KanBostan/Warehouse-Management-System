@@ -3,7 +3,7 @@ package com.furkanbostan.depoyonetim.ViewModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class SaleViewModel(@SerializedName("Id")
+class SaleViewModel(@SerializedName("id")
                     @Expose
                     val Id : Int,
                     @SerializedName("productId")

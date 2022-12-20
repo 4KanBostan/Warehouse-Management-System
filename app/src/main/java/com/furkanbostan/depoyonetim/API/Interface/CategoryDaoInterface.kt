@@ -1,13 +1,18 @@
 package com.furkanbostan.depoyonetim.API.Interface
 
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import com.furkanbostan.depoyonetim.Model.CategoryModel
+import com.furkanbostan.depoyonetim.ViewModel.CategoryViewModel
+import com.furkanbostan.depoyonetim.ViewModel.CityViewModel
+import retrofit2.Call
+import retrofit2.http.*
 
 interface CategoryDaoInterface {
 
-    @POST("categories")
-    @FormUrlEncoded
-    fun kategoriEkle(@Field("storeId") storeId: Int,
-                     @Field("name") categoryName: String)
+    @POST("api/categories/{storeId}")
+    fun kategoriEkle(@Path("storeId") storeId:Int, @Body categoryModel: CategoryModel):Call<Void>
+
+    @GET("api/categories")
+    fun getAllCAtegory():Call<List<CategoryViewModel>>
+
+
 }
