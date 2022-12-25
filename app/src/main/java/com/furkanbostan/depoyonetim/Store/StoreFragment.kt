@@ -118,7 +118,7 @@ class StoreFragment : Fragment() {
                     var purchaseTemp=0
                     var saleTemp = 0
                     var quantity=0
-                    Log.e("name",productList!!.get(0).Name)
+
                     if (productList != null) {
                         for (k in productList){
                             for (i in k.Purchases){
@@ -131,8 +131,11 @@ class StoreFragment : Fragment() {
                                 quantity= purchaseTemp-saleTemp
                             }
 
-                            val temp= StoreProductModel(k.Id,k.Name,quantity,k.Description,k.Price,k.Purchases.get(0).Price,k.Category.Name)
+                            val temp= StoreProductModel(k.Id,k.Name,quantity,k.Description,k.Price,k.Purchases.last().Price,
+                                                        k.Category.Name,k.Photo.first().Path)
                             productArrayList.add(temp)
+                            purchaseTemp=0
+                            saleTemp = 0
                         }
                         adapter_product.setFilteredList(productArrayList)
                     }

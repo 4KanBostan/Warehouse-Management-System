@@ -2,6 +2,7 @@ package com.furkanbostan.depoyonetim.Store
 
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.furkanbostan.depoyonetim.API.ApiUtils
 import com.furkanbostan.depoyonetim.Model.*
+import com.furkanbostan.depoyonetim.MyModel.PhotoModel
 import com.furkanbostan.depoyonetim.MyModel.ProdId
 import com.furkanbostan.depoyonetim.MyModel.PurchasesModel
 import com.furkanbostan.depoyonetim.ViewModel.CategoryViewModel
+import com.furkanbostan.depoyonetim.ViewModel.ProductViewModel
 import com.furkanbostan.depoyonetim.databinding.FragmentBuyBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,33 +25,35 @@ class BuyFragment : Fragment() {
     private var binding: FragmentBuyBinding?=null
 
 
-
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBuyBinding.inflate(layoutInflater,container,false)
         val view = binding!!.root
-
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding!!.btnProductEkle.setOnClickListener{
             getCategory(binding!!.etProdKategori.text.toString())
-
-
-
-
-
-
         }
 
     }
 
 
+    fun addPurchases(purchasesModel: PurchasesModel){
+        val sdi = ApiUtils.getPurchasesDaoInterface()
+        var addPurchase = sdi.addPurchase(purchasesModel)
+        addPurchase.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.e("addPurchase","Başarılı")
+            }
 
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("addPurchase",t.toString())
+            }
+
+        })
+    }
 
     fun addProduct(productModel: ProductModel){
         val pdi = ApiUtils.getProductDaoInterface()
@@ -90,6 +95,7 @@ class BuyFragment : Fragment() {
                 val prodName=binding!!.etProdName.text.toString()
                 val prodDesc = binding!!.etProdDEsc.text.toString()
                 val prodPrice=binding!!.etProductSalePrice.text.toString().toInt().toFloat()
+                val prodImage = binding!!.etPhotoUrl.text.toString()
                 val categoryId = kategoriId
                 Log.e("asdasdasdasd",categoryId.toString())
                 val productModel =ProductModel(categoryId,prodName,prodDesc,prodPrice)
@@ -107,16 +113,16 @@ class BuyFragment : Fragment() {
 
 
     }
-    fun addPurchases(purchasesModel: PurchasesModel){
-        val sdi = ApiUtils.getPurchasesDaoInterface()
-        var addPurchase = sdi.addPurchase(purchasesModel)
-        addPurchase.enqueue(object :Callback<Void>{
+    fun addPhoto(photoModel: PhotoModel){
+        val pdi= ApiUtils.getPhotosDaoInterface()
+        val addPhoto = pdi.addPhoto(photoModel)
+        addPhoto.enqueue(object :Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.e("addPurchase","Başarılı")
+                Log.e("Photo add","Başarılı")
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("addPurchase",t.toString())
+                TODO("Not yet implemented")
             }
 
         })
@@ -140,7 +146,12 @@ class BuyFragment : Fragment() {
                 val purchasePrice = binding!!.etProdPurchasePrice.text.toString().toFloat()
                 val prodId= prodIdArrayList.last()
                 val purchasesModel= PurchasesModel(prodId,purchaseQuantity,purchasePrice)
-                addPurchases(purchasesModel)
+                val photoModel=PhotoModel(purchasesModel.productId,binding!!.etPhotoUrl.text.toString())
+                addPhoto(photoModel)
+                Handler().postDelayed({
+                    addPurchases(purchasesModel)
+                }, 2000)
+
             }
 
             override fun onFailure(call: Call<List<ProdId>>, t: Throwable) {
@@ -150,4 +161,6 @@ class BuyFragment : Fragment() {
 
         })
     }
+
+
 }

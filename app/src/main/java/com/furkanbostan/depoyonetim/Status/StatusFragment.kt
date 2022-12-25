@@ -1,6 +1,7 @@
 package com.furkanbostan.depoyonetim.Status
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.API.ApiUtils
 import com.furkanbostan.depoyonetim.Adapter.StatPurchaseAdapter
 import com.furkanbostan.depoyonetim.Adapter.StatSaleAdapter
+import com.furkanbostan.depoyonetim.MyModel.ProdIdPhotos
 import com.furkanbostan.depoyonetim.R
 import com.furkanbostan.depoyonetim.ViewModel.PurchasesViewModel
 import com.furkanbostan.depoyonetim.ViewModel.SaleViewModel
@@ -30,11 +32,7 @@ class StatusFragment : Fragment() {
     private lateinit var statSaleList: ArrayList<StatsSaleModel>
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentStatusBinding.inflate(layoutInflater, container, false)
         val view = binding!!.root
         return view
@@ -60,6 +58,10 @@ class StatusFragment : Fragment() {
         adapter_sale = StatSaleAdapter(view.context, statSaleList)
         recyclerView_sale.adapter = adapter_sale
 
+        Handler().postDelayed({
+            binding!!.tvKarZarar.text = (binding!!.tvSalePrice.text.toString().toFloat()-binding!!.tvPurchasePrice.text.toString().toFloat()).toString()
+        }, 2000)
+
 
     }
 
@@ -80,12 +82,12 @@ class StatusFragment : Fragment() {
                     tempQuantity += k.Quantity
                     tempPrice += k.Quantity * k.Product.Price
                     val saleModel =
-                        StatsSaleModel(k.Product.Name, k.Quantity, k.Product.Price, "asd")
-                    statSaleList.add(saleModel)
+                        StatsSaleModel(k.ProductId,k.Product.Name, k.Quantity, k.Product.Price)
+                    getAllProductsIdAndPhotoSale(saleModel)
                 }
                 binding!!.tvSaleQuantity.text = tempQuantity.toString()
                 binding!!.tvSalePrice.text = tempPrice.toString()
-                adapter_sale.setFilteredList(statSaleList)
+
 
             }
 
@@ -112,12 +114,12 @@ class StatusFragment : Fragment() {
                     tempQuantity += k.Quantity
                     tempPrice += k.Quantity * k.Price
                     val purchaseModel =
-                        StatsPurchaseModel(k.Product.Name, k.Quantity, k.Price, "asd")
-                    statPurchaseList.add(purchaseModel)
+                        StatsPurchaseModel(k.ProductId,k.Product.Name, k.Quantity, k.Price)
+                    getAllProductsIdAndPhotosPurchase(purchaseModel)
                 }
                 binding!!.tvPurchaseQuantity.text = tempQuantity.toString()
                 binding!!.tvPurchasePrice.text = tempPrice.toString()
-                adapter_purchase.setNewList(statPurchaseList)
+
 
             }
 
@@ -127,5 +129,58 @@ class StatusFragment : Fragment() {
 
         })
     }
+
+    fun getAllProductsIdAndPhotosPurchase(statsPurchaseModel: StatsPurchaseModel){
+
+        val pdi = ApiUtils.getProductDaoInterface()
+        val getIdPhoto = pdi.productIDAndPhotos()
+
+        getIdPhoto.enqueue(object : Callback<List<ProdIdPhotos>>{
+            override fun onResponse(call: Call<List<ProdIdPhotos>>, response: Response<List<ProdIdPhotos>>) {
+                val arrayTemp = response.body()
+
+                for (k in arrayTemp!!){
+                    if (statsPurchaseModel.id==k.id)
+                    statsPurchaseModel.image= k.photos.first().Path
+                }
+                statPurchaseList.add(statsPurchaseModel)
+                adapter_purchase.setNewList(statPurchaseList)
+            }
+
+            override fun onFailure(call: Call<List<ProdIdPhotos>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
+    fun getAllProductsIdAndPhotoSale(statsSaleModel: StatsSaleModel){
+
+        val pdi = ApiUtils.getProductDaoInterface()
+        val getIdPhoto = pdi.productIDAndPhotos()
+
+        getIdPhoto.enqueue(object : Callback<List<ProdIdPhotos>>{
+            override fun onResponse(call: Call<List<ProdIdPhotos>>, response: Response<List<ProdIdPhotos>>) {
+                val arrayTemp = response.body()
+
+                for (k in arrayTemp!!){
+                    if (statsSaleModel.id==k.id){
+                        statsSaleModel.image= k.photos.first().Path
+                    }
+
+                }
+                statSaleList.add(statsSaleModel)
+                adapter_sale.setFilteredList(statSaleList)
+            }
+
+            override fun onFailure(call: Call<List<ProdIdPhotos>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
 
 }

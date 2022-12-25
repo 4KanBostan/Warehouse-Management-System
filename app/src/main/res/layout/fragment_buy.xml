@@ -21,6 +21,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Fotoğraf Url"
+        android:textColor="#0B0A0A"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/et_ProdPurchasePrice"
+        app:layout_constraintTop_toBottomOf="@+id/et_ProdPurchasePrice" />
+
+    <TextView
         android:id="@+id/textView59"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,6 +87,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
     <EditText
+        android:id="@+id/et_PhotoUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Fotoğraf url giriniz"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <EditText
         android:id="@+id/et_ProdDEsc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,8 +138,8 @@
         android:text="Adet"
         android:textColor="#0B0A0A"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/et_ProdDEsc"
-        app:layout_constraintTop_toBottomOf="@+id/et_ProdPurchasePrice" />
+        app:layout_constraintStart_toStartOf="@+id/et_PhotoUrl"
+        app:layout_constraintTop_toBottomOf="@+id/et_PhotoUrl" />
 
     <EditText
         android:id="@+id/et_ProdPurchasePrice"
@@ -144,7 +166,7 @@
         android:id="@+id/textView58"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:text="Alma İşlemini Tamamla:"
         android:textColor="#151313"
         android:textSize="20sp"

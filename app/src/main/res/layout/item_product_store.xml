@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/product_image"
+            android:id="@+id/stat_image_photo"
             android:layout_width="99dp"
             android:layout_height="82dp"
             android:layout_marginStart="3dp"
@@ -45,7 +45,7 @@
             android:layout_marginTop="36dp"
             android:text="Açıklama kısmı buraya eklenecek"
             android:textColor="#3E3939"
-            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintStart_toEndOf="@+id/stat_image_photo"
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <LinearLayout
@@ -110,7 +110,7 @@
             android:layout_marginTop="8dp"
             android:text="#kategori"
             android:textColor="#52678A"
-            app:layout_constraintStart_toEndOf="@+id/product_image"
+            app:layout_constraintStart_toEndOf="@+id/stat_image_photo"
             app:layout_constraintTop_toBottomOf="@+id/tv_product_details"></TextView>
 
         <ImageView

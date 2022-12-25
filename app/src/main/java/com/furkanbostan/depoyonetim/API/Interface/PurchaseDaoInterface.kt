@@ -1,11 +1,10 @@
 package com.furkanbostan.depoyonetim.API.Interface
 
 import com.furkanbostan.depoyonetim.MyModel.PurchasesModel
+import com.furkanbostan.depoyonetim.Status.StatsPurchaseModel
 import com.furkanbostan.depoyonetim.ViewModel.PurchasesViewModel
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface PurchaseDaoInterface {
     @POST("api/purchases")
@@ -13,4 +12,7 @@ interface PurchaseDaoInterface {
 
     @GET("api/purchases")
     fun gelAllpurchase():Call<List<PurchasesViewModel>>
+
+    @PATCH("api/purchases/{id}")
+    fun updatePurchase(@Path("id")purcId:Int, @Body purchasesModel: PurchasesModel):Call<Void>
 }

@@ -1,6 +1,7 @@
 package com.furkanbostan.depoyonetim.API
 
 import com.furkanbostan.depoyonetim.API.Interface.*
+import retrofit2.create
 
 class ApiUtils {
     companion object{
@@ -22,6 +23,15 @@ class ApiUtils {
         }
         fun getPurchasesDaoInterface():PurchaseDaoInterface{
             return RetrofitClient.getClient(BASE_URL).create(PurchaseDaoInterface::class.java)
+        }
+        fun getStoreDaoInterface():StoreDaoInterface{
+            return RetrofitClient.getClient(BASE_URL).create(StoreDaoInterface::class.java)
+        }
+        fun getWalleteDaoInterface():WalletDaoInterface{
+            return RetrofitClient.getClient(BASE_URL).create(WalletDaoInterface::class.java)
+        }
+        fun getPhotosDaoInterface():PhotosDaoInterface{
+            return  RetrofitClient.getClient(BASE_URL).create(PhotosDaoInterface::class.java)
         }
     }
 }

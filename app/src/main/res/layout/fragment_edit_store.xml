@@ -74,7 +74,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/et_storeBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -87,7 +87,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btn_update"
                 android:layout_width="65dp"
                 android:layout_height="55dp"
                 android:layout_marginEnd="17dp"
@@ -105,8 +105,8 @@
                 android:textColor="#251B1B"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+                app:layout_constraintStart_toStartOf="@+id/et_StorePhone"
+                app:layout_constraintTop_toBottomOf="@+id/et_StorePhone" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -130,8 +130,8 @@
                 android:textColor="#251B1B"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+                app:layout_constraintStart_toStartOf="@+id/et_StoreAddress"
+                app:layout_constraintTop_toBottomOf="@+id/et_StoreAddress" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -142,8 +142,8 @@
                 android:textColor="#251B1B"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintStart_toStartOf="@+id/et_StoreNAme"
+                app:layout_constraintTop_toBottomOf="@+id/et_StoreNAme" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -154,11 +154,11 @@
                 android:textColor="#251B1B"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                app:layout_constraintStart_toStartOf="@+id/et_StoreCity"
+                app:layout_constraintTop_toBottomOf="@+id/et_StoreCity" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_StoreNAme"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -171,7 +171,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/et_StoreCity"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -184,8 +184,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
-                android:layout_width="wrap_content"
+                android:id="@+id/et_StoreAddress"
+                android:layout_width="342dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
@@ -197,7 +197,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/et_StorePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -218,8 +218,8 @@
                 android:textColor="#0C0B0B"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+                app:layout_constraintStart_toStartOf="@+id/et_storeBalance"
+                app:layout_constraintTop_toBottomOf="@+id/et_storeBalance" />
 
             <EditText
                 android:id="@+id/et_BakiyeEkle"

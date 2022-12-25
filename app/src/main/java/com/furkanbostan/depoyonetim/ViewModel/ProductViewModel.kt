@@ -21,9 +21,9 @@ data class ProductViewModel(@SerializedName("id")
                             @SerializedName("category")
                             @Expose
                             val Category:CategoryViewModel,
-                            @SerializedName("photo")
+                            @SerializedName("photos")
                             @Expose
-                            val Photo:PhotoViewModel,
+                            val Photo:List<PhotoViewModel>,
                             @SerializedName("purchases")
                             @Expose
                             val Purchases: List<PurchasesViewModel>,

@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.Model.StoreProductModel
 import com.furkanbostan.depoyonetim.R
 import com.furkanbostan.depoyonetim.Status.StatsSaleModel
+import com.squareup.picasso.Picasso
 
 class StatSaleAdapter(private val mContext: Context, private var saleModelList :ArrayList<StatsSaleModel>) :RecyclerView.Adapter<StatSaleAdapter.SaleProductHolder>() {
 
@@ -22,11 +24,13 @@ class StatSaleAdapter(private val mContext: Context, private var saleModelList :
         var saleName: TextView
         var salePiece: TextView
         var salePrice: TextView
+        var image :ImageView
 
         init {
             saleName = view.findViewById(R.id.tv_sale_name)
             salePiece= view.findViewById(R.id.tv_sale_piece)
             salePrice = view.findViewById(R.id.tv_sale_price)
+            image = view.findViewById(R.id.stat_image_photo)
         }
 
     }
@@ -41,6 +45,7 @@ class StatSaleAdapter(private val mContext: Context, private var saleModelList :
         holder.saleName.text = sale_product.name
         holder.salePiece.text= sale_product.piece.toString()
         holder.salePrice.text = sale_product.price.toString()
+        Picasso.get().load(sale_product.image).into(holder.image)
     }
 
     override fun getItemCount(): Int {
