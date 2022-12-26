@@ -10,6 +10,7 @@
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1855" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1855" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2005" />
+        <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/ic_baseline_update_24.xml" value="0.2065" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/search.xml" value="0.2045" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/stats_selector.xml" value="0.1" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/drawable/store_selector.xml" value="0.1855" />
@@ -17,7 +18,7 @@
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_buy.xml" value="0.25" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_category_add.xml" value="0.2359375" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_edit_profil.xml" value="0.264" />
-        <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_edit_store.xml" value="0.2359375" />
+        <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_edit_store.xml" value="0.176" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/furkn/AndroidStudioProjects/DepoYonetim/app/src/main/res/layout/fragment_product_details.xml" value="0.25" />
