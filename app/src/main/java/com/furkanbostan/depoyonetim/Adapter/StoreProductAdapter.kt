@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.Model.StoreProductModel
 import com.furkanbostan.depoyonetim.R
+import com.furkanbostan.depoyonetim.Store.StoreFragmentDirections
 import com.squareup.picasso.Picasso
 
 class StoreProductAdapter (private val mcontext :Context,
@@ -61,7 +62,8 @@ class StoreProductAdapter (private val mcontext :Context,
         holder.productSale.text = product.sale_price.toString()
         Picasso.get().load(product.image).into(holder.productImage)
         holder.prdouctDetails.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_productDetailsFragment)
+            val action = StoreFragmentDirections.actionStoreFragmentToProductDetailsFragment(product.id)
+            Navigation.findNavController(it).navigate(action)
         }
 
     }

@@ -39,35 +39,6 @@ class MainActivity : AppCompatActivity() {
         //navHostFragment ile bottomNavCOnttroller birleştirme işlemi
         NavigationUI.setupWithNavController(button, navhostFragment.navController)
 
-        /* val BASE_URL="https://127.0.0.1:7240/api/cities/"
-
-
-      *//*  val retrofitBuilder = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(CityDaoInterface::class.java)
-
-        val retrofitDAta = retrofitBuilder.sehirCagir()
-        retrofitDAta.enqueue(object : Callback<List<CityViewModel>>{
-
-            override fun onResponse(call: Call<List<CityViewModel>>, response: Response<List<CityViewModel>>) {
-                val sehirListe = response.body()
-                for (k in sehirListe!!){
-                    Log.e("********","***********")
-                    Log.e("Sehir Id:", k.Id.toString())
-                    Log.e("Sehir NAme:", k.Name)
-                    //  Log.e("Stores Name:", k.Stores[1].Name)
-                }
-
-            }
-
-            override fun onFailure(call: Call<List<CityViewModel>>, t: Throwable) {
-                Log.e("sd",t.toString())
-            }
-        })
-
-*/
 
         val navController = navhostFragment.navController
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -93,17 +64,17 @@ class MainActivity : AppCompatActivity() {
             override fun onVisibilityChanged(isOpen: Boolean) {
                 if(isOpen){
 
-                    bottomNav.setVisibility(View.INVISIBLE);
+                    bottomNav.setVisibility(View.GONE);
 
                 }else{
-
-                    bottomNav.setVisibility(View.VISIBLE);
+                    navController.addOnDestinationChangedListener { navController: NavController, navDestination: NavDestination, bundle: Bundle? ->
+                        if (navDestination.id==R.id.editStoreFragment){
+                            bottomNav.setVisibility(View.GONE)
+                        }else bottomNav.setVisibility(View.VISIBLE);
+                    }
 
                 }
             }
-
         })
-
     }
-
 }

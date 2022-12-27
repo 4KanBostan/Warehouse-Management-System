@@ -1,23 +1,20 @@
 package com.furkanbostan.depoyonetim.Home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.furkanbostan.depoyonetim.API.ApiUtils
-import com.furkanbostan.depoyonetim.MyModel.IncomeWalletModel
 import com.furkanbostan.depoyonetim.MyModel.StoreModel
-import com.furkanbostan.depoyonetim.R
+import com.furkanbostan.depoyonetim.MyModel.WalletModel
 import com.furkanbostan.depoyonetim.ViewModel.CityViewModel
 import com.furkanbostan.depoyonetim.ViewModel.StoreViewModel
 import com.furkanbostan.depoyonetim.ViewModel.WalletViewModel
-import com.furkanbostan.depoyonetim.databinding.FragmentEditProfilBinding
 import com.furkanbostan.depoyonetim.databinding.FragmentEditStoreBinding
-import com.furkanbostan.depoyonetim.databinding.FragmentStoreBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +34,7 @@ class EditStoreFragment : Fragment() {
         binding.backHomeButton.setOnClickListener{
             findNavController().popBackStack()
         }
-
+        // mağaza bilgilerini gösterir
         getStore()
 
         binding.btnUpdate.setOnClickListener{
@@ -46,8 +43,8 @@ class EditStoreFragment : Fragment() {
         }
         binding.btnAddWallet.setOnClickListener{
             var addBalance = binding.etBakiyeEkle.text.toString().toFloat()
+            getWallet(addBalance)
 
-           // updateWallet(1,)
         }
     }
 
@@ -102,15 +99,41 @@ class EditStoreFragment : Fragment() {
         })
     }
 
-    fun updateWallet(walletId:Int, incomeWalletModel: IncomeWalletModel) {
+    fun updateWallet(walletId:Int, walletModel: WalletModel) {
         val wdi = ApiUtils.getWalleteDaoInterface()
-        val updateWallet = wdi.updateIncome(walletId, incomeWalletModel)
+        val updateWallet = wdi.updateWallet(walletId, walletModel)
         updateWallet.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 Toast.makeText(context, "Bakiye eklendi", Toast.LENGTH_SHORT).show()
+                getStore()
+                binding.etBakiyeEkle.text.clear()
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+    fun getWallet(addBalance:Float){
+        val wdi = ApiUtils.getWalleteDaoInterface()
+        val getWallet = wdi.getWallets()
+
+        getWallet.enqueue(object : Callback<List<WalletViewModel>>{
+            override fun onResponse(call: Call<List<WalletViewModel>>, response: Response<List<WalletViewModel>>) {
+                val arrayWAlletTemp = response.body()
+
+                if (arrayWAlletTemp != null) {
+                    var balance =arrayWAlletTemp.get(0).Balance
+                    var income = arrayWAlletTemp.get(0).Income
+                    val outgoing = arrayWAlletTemp.first().OutGoing
+                    var walletModel = WalletModel(1,income,outgoing,balance+addBalance)
+                    updateWallet(1,walletModel)
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<WalletViewModel>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 
@@ -128,7 +151,7 @@ class EditStoreFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("updtStore",t.toString())
             }
 
         })
@@ -162,18 +185,19 @@ class EditStoreFragment : Fragment() {
 
                 for (k in cityListTemp!!){
                     if (k.Name.trim().toLowerCase()==cityName.trim().toLowerCase()){
+                        Log.e("cityId bulundu: ",k.Id.toString())
                         cityId=k.Id
                         var cityAddress = binding.etStoreAddress.text.toString()
                         var cityDescription = ""
                         var cityPhone= binding.etStorePhone.text.toString()
                         var storeModel = StoreModel(cityId!!, cityName,cityAddress,cityDescription,cityPhone)
                         updteStore(1, storeModel)
-                    }
+                    }else Log.e("asdasd","sdfmsdfj")
                 }
             }
 
             override fun onFailure(call: Call<List<CityViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getCityIdForUpdate",t.toString())
             }
 
         })

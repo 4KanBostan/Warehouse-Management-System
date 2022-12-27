@@ -31,7 +31,7 @@ import retrofit2.Response
 
 
 class StoreFragment : Fragment() {
-    private var binding:FragmentStoreBinding?=null
+    private lateinit var binding:FragmentStoreBinding
 
     //extended Fab Button Animasyon İşlemleri
     private val rotateOpen:Animation by lazy{AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim)}
@@ -53,7 +53,7 @@ class StoreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=FragmentStoreBinding.inflate(layoutInflater,container,false)
-        val view = binding!!.root
+        val view = binding.root
         return view
     }
 
@@ -79,15 +79,15 @@ class StoreFragment : Fragment() {
         recyclerView_category.adapter = adapter_category
 
 
-        binding!!.fabAdd.setOnClickListener{
+        binding.fabAdd.setOnClickListener{
             onaAddFABClicked()
            // test1()
         }
 
-        binding!!.fabBuy.setOnClickListener{
+        binding.fabBuy.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_buyFragment4)
         }
-        binding!!.fabCategoryAdd.setOnClickListener{
+        binding.fabCategoryAdd.setOnClickListener{
             Navigation.findNavController(it).navigate(R.id.action_storeFragment_to_categoryAddFragment)
         }
 
@@ -147,8 +147,8 @@ class StoreFragment : Fragment() {
 
         })
     }
-    fun getAllCategory(){
 
+    fun getAllCategory(){
         val cdi = ApiUtils.getCategoryDaoInterface()
         var kategoriList=cdi.getAllCAtegory()
         kategoriList.enqueue(object : Callback<List<CategoryViewModel>>{
@@ -164,95 +164,9 @@ class StoreFragment : Fragment() {
             override fun onFailure(call: Call<List<CategoryViewModel>>, t: Throwable) {
                 Log.e("kategoriHata",t.toString())
             }
-
         })
-
     }
 
-    fun test1(){
-        val kdi = ApiUtils.setCityDaoInterface()
-        val sehirTut=kdi.sehirCagir()
-        sehirTut.enqueue(object : Callback<List<CityViewModel>> {
-
-            override fun onResponse(call: Call<List<CityViewModel>>, response: Response<List<CityViewModel>>) {
-                if (response!=null){
-                    val sehirListe = response.body()
-
-                    for (k in sehirListe!!){
-                        Log.e("********","***********")
-                        Log.e("Sehir Id:", k.Id.toString())
-                        Log.e("Sehir NAme:", k.Name)
-                        //  Log.e("Stores Name:", k.Stores[1].Name)
-                    }
-
-                }
-            }
-
-            override fun onFailure(call: Call<List<CityViewModel>>, t: Throwable) {
-                Log.e("Basaramadık abi",t.toString())
-            }
-        })
-
-        val cdi = ApiUtils.setCityDaoInterface()
-        val sehirSil = cdi.sehirSil(4)
-        sehirSil.enqueue(object : Callback<Void>{
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.e("başarılı","asdasd")
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("hata",t.toString())
-            }
-
-        })
-
-        val cdo = ApiUtils.setCityDaoInterface()
-        val cityModel = CityModel("Palto")
-        val sehirEKle = cdo.sehirEKle(cityModel)
-        sehirEKle.enqueue(object : Callback<Void>{
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.e("sehir ekleme başarılı","başarılı")
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("sehir ekleme başarısız",t.toString())
-            }
-
-        })
-
-        val asd = ApiUtils.getCategoryDaoInterface()
-        val categoryModel = CategoryModel("Palto")
-        val kategoriEkle = asd.kategoriEkle(1,categoryModel)
-        kategoriEkle.enqueue(object : Callback<Void>{
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.e("qwewqe","kategori ekleme başarılı")
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("kategori ",t.toString())
-            }
-
-        })
-
-
-
-
-
-
-    }
-    //f8 miş
-    // kanka neden girmiyor buraya
-    /* fun test(){
-         CoroutineScope(Dispatchers.IO).launch {
-             try{
-                 var asd = DepoApi;
-                 val t = DepoApi.retrofitService.sehirCagir()
-                 Log.e("Success!",t.toString())
-             }catch (e:Exception){
-                 Log.e("Error",e.message.toString())
-             }
-         }
-     }*/
 
     fun filteredList(text :String){
         lateinit var filteredList :ArrayList<StoreProductModel>
@@ -284,67 +198,25 @@ class StoreFragment : Fragment() {
 
     fun setVisibility(clicked:Boolean){
         if (!clicked){
-            binding!!.fabBuy.visibility=View.VISIBLE
-            binding!!.fabCategoryAdd.visibility=View.VISIBLE
+            binding.fabBuy.visibility=View.VISIBLE
+            binding.fabCategoryAdd.visibility=View.VISIBLE
         }else{
-            binding!!.fabBuy.visibility=View.INVISIBLE
-            binding!!.fabCategoryAdd.visibility=View.INVISIBLE
+            binding.fabBuy.visibility=View.INVISIBLE
+            binding.fabCategoryAdd.visibility=View.INVISIBLE
         }
 
     }
     fun setAnimation(clicked:Boolean){
         if (!clicked){
-            binding!!.fabBuy.startAnimation(fromBottom)
-            binding!!.fabCategoryAdd.startAnimation(fromBottom)
-            binding!!.fabAdd.startAnimation(rotateOpen)
+            binding.fabBuy.startAnimation(fromBottom)
+            binding.fabCategoryAdd.startAnimation(fromBottom)
+            binding.fabAdd.startAnimation(rotateOpen)
 
 
         }else{
-            binding!!.fabBuy.startAnimation(toBottom)
-            binding!!.fabCategoryAdd.startAnimation(toBottom)
-            binding!!.fabAdd.startAnimation(rotateClose)
+            binding.fabBuy.startAnimation(toBottom)
+            binding.fabCategoryAdd.startAnimation(toBottom)
+            binding.fabAdd.startAnimation(rotateClose)
         }
     }
-
-
-
-
-
-
-    private fun dataInitiailize(){
-       /* productArrayList = ArrayList<StoreProductModel>()
-
-        val product = StoreProductModel("Kazak",15,"Mavi, M beden",200,"#kazak")
-        val product1 = StoreProductModel("Kazak",15,"Mavi, M beden",200,"#kazak")
-        val product2 = StoreProductModel("Kazak",15,"Mavi, M beden",200,"kazak")
-        val product3 = StoreProductModel("Kazak",15,"Mavi, M beden",200,"kazak")
-        val product4 = StoreProductModel("Kazak",15,"Mavi, M beden",200,"kazak")
-        val product5 = StoreProductModel("Kazak",15,"Mavi, M beden",200,"kazak")
-        val product6 = StoreProductModel("Masa",15,"Mavi, M beden",200,"kazak")
-
-
-        productArrayList.add(product)
-        productArrayList.add(product1)
-        productArrayList.add(product2)
-        productArrayList.add(product3)
-        productArrayList.add(product4)
-        productArrayList.add(product5)
-        productArrayList.add(product6)*/
-
-       /* categoryArrayList = ArrayList<CategoryModel>()
-        val category = CategoryModel("Erkek Gömlek")
-        val category1 = CategoryModel("Kazak")
-        val category2 = CategoryModel("Erkek Gömlek")
-        val category3 = CategoryModel("Erkek Gömlek")
-        val category4 = CategoryModel("Erkek Gömlek")
-
-        categoryArrayList.add(category)
-        categoryArrayList.add(category1)
-        categoryArrayList.add(category2)
-        categoryArrayList.add(category3)
-        categoryArrayList.add(category4)
-*/
-    }
-
-
 }

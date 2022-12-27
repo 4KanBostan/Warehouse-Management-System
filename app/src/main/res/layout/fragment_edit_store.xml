@@ -57,11 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="186dp"
             android:src="@drawable/abstract_lettering_buy_now_with_shopping_elements" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#FFFBFB"
@@ -193,11 +194,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="#FFFBFB"
         android:padding="4dp"
         app:cardBackgroundColor="#E7ECEF"
         app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -228,23 +230,12 @@
                 app:layout_constraintBottom_toBottomOf="@+id/et_BakiyeEkle"
                 app:layout_constraintStart_toEndOf="@+id/et_BakiyeEkle" />
 
-            <EditText
-                android:id="@+id/et_BakiyeEkle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="Bakiye ekle"
-                android:inputType="number"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Güncel Bakiye"
                 android:textColor="#251B1B"
                 android:textSize="16sp"
@@ -258,12 +249,21 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
-                android:hint="44500"
-                android:inputType="textPersonName"
+                android:enabled="false"
+                android:inputType="none"
                 android:textColor="#274C77"
                 android:textColorHint="#274C77"
                 app:layout_constraintStart_toStartOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <EditText
+                android:id="@+id/et_BakiyeEkle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberSigned"
+                app:layout_constraintStart_toStartOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

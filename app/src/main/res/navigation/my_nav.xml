@@ -85,7 +85,11 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.furkanbostan.depoyonetim.Store.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/buyFragment4"
         android:name="com.furkanbostan.depoyonetim.Store.BuyFragment"
