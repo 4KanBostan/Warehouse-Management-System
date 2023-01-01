@@ -20,7 +20,12 @@ within the application;
 
 # APP IMAGE
 
-Solarized dark             |  Solarized Ocean
+ Home Page             |  Warehouse Page
 :-------------------------:|:-------------------------:
-![](![home image](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_234025.png) )  |  ![](![home image](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_234025.png) )
+![home image](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_234025.png )  |![warehouse page](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224350.png )
+
+ Warehouse Page             |  Report Page
+:-------------------------:|:-------------------------:
+![warehouse image1](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224421.png )  |![reports page](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224434.png )
+
 
