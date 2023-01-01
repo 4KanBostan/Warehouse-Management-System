@@ -229,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="-1dp"
-                android:text="LCW"
+                android:text="DEFACTO"
                 android:textColor="#274C77"
                 android:textSize="18sp"
                 android:textStyle="italic"
