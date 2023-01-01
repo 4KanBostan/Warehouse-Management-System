@@ -39,11 +39,11 @@
 
         <TextView
             android:id="@+id/tv_product_details"
-            android:layout_width="181dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="36dp"
-            android:text="Açıklama kısmı buraya eklenecek"
+            android:text="Açıklama kısmı"
             android:textColor="#3E3939"
             app:layout_constraintStart_toEndOf="@+id/stat_image_photo"
             app:layout_constraintTop_toTopOf="parent"></TextView>
@@ -83,11 +83,12 @@
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginEnd="110dp"
             app:cardBackgroundColor="#E7ECEF"
             app:cardCornerRadius="12dp"
-            app:layout_constraintStart_toEndOf="@+id/tv_product_details"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_go_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_go_details">
 
             <TextView
                 android:id="@+id/product_adet"
@@ -106,12 +107,10 @@
             android:id="@+id/tv_product_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="#kategori"
             android:textColor="#52678A"
-            app:layout_constraintStart_toEndOf="@+id/stat_image_photo"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_details"></TextView>
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/textView33"></TextView>
 
         <ImageView
             android:id="@+id/tv_product_go_details"
@@ -125,6 +124,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.473"
             app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"></ImageView>
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="#"
+            android:textColor="#151414"
+            app:layout_constraintStart_toStartOf="@+id/tv_product_details"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_details" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,13 +8,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.furkanbostan.depoyonetim.API.ApiUtils
 import com.furkanbostan.depoyonetim.Model.*
 import com.furkanbostan.depoyonetim.MyModel.PhotoModel
 import com.furkanbostan.depoyonetim.MyModel.ProdId
 import com.furkanbostan.depoyonetim.MyModel.PurchasesModel
+import com.furkanbostan.depoyonetim.MyModel.WalletModel
 import com.furkanbostan.depoyonetim.ViewModel.CategoryViewModel
 import com.furkanbostan.depoyonetim.ViewModel.ProductViewModel
+import com.furkanbostan.depoyonetim.ViewModel.WalletViewModel
 import com.furkanbostan.depoyonetim.databinding.FragmentBuyBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,19 +27,23 @@ import retrofit2.Response
 
 
 class BuyFragment : Fragment() {
-    private var binding: FragmentBuyBinding?=null
+    private lateinit var binding: FragmentBuyBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentBuyBinding.inflate(layoutInflater,container,false)
-        val view = binding!!.root
+        val view = binding.root
         return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding!!.btnProductEkle.setOnClickListener{
-            getCategory(binding!!.etProdKategori.text.toString())
+        binding.btnProductEkle.setOnClickListener{
+            getWallet()
+        }
+
+        binding.backToStore2.setOnClickListener{
+            findNavController().popBackStack()
         }
 
     }
@@ -150,7 +159,7 @@ class BuyFragment : Fragment() {
                 addPhoto(photoModel)
                 Handler().postDelayed({
                     addPurchases(purchasesModel)
-                }, 2000)
+                }, 3000)
 
             }
 
@@ -160,6 +169,50 @@ class BuyFragment : Fragment() {
 
 
         })
+    }
+    fun getWallet(){
+        val wdi = ApiUtils.getWalleteDaoInterface()
+        val getWallet = wdi.getWallets()
+
+        var quantity = binding.etProdQuantity.text.toString().toInt()
+        var price = binding.etProdPurchasePrice.text.toString().toFloat()
+        var temp = quantity*price
+        getWallet.enqueue(object : Callback<List<WalletViewModel>>{
+            override fun onResponse(call: Call<List<WalletViewModel>>, response: Response<List<WalletViewModel>>) {
+               val walletTemp = response.body()
+                if (walletTemp != null) {
+                    if (walletTemp.first().Balance>=temp){
+                        val income = walletTemp.first().Income
+                        val outGOing = walletTemp.first().OutGoing+temp
+                        val balance = walletTemp.first().Balance-temp
+                        val walletModel = WalletModel(1,income,outGOing,balance)
+                        updateWallet(1,walletModel)
+                        getCategory(binding.etProdKategori.text.toString())
+                    }else Toast.makeText(activity,"Bakiye yetersiz",Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<WalletViewModel>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    fun updateWallet(walletId:Int, walletModel: WalletModel) {
+        val wdi = ApiUtils.getWalleteDaoInterface()
+        val updWallet = wdi.updateWallet(walletId,walletModel)
+        updWallet.enqueue(object : Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.e("updateWallet","updateWallet completed")
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("updateWallet",t.toString())
+            }
+
+        })
+
     }
 
 

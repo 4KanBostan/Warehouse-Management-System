@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.furkanbostan.depoyonetim.API.ApiUtils
@@ -22,7 +23,7 @@ import retrofit2.Response
 
 class CategoryAddFragment : Fragment() {
 
-    private var binding: FragmentCategoryAddBinding?=null
+    private lateinit var binding: FragmentCategoryAddBinding
 
     private lateinit var categoryList: ArrayList<CategoryModel>
     private lateinit var recyclerView: RecyclerView
@@ -49,6 +50,9 @@ class CategoryAddFragment : Fragment() {
 
         binding!!.buttonAddCategory.setOnClickListener{
             addCategory(binding!!.etCategoryAdd.text.toString())
+        }
+        binding.backToStore3.setOnClickListener{
+            findNavController().popBackStack()
         }
 
 

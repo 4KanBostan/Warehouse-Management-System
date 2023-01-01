@@ -2,6 +2,7 @@ package com.furkanbostan.depoyonetim.Status
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -148,7 +149,7 @@ class StatusFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<ProdIdPhotos>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getAllProducts",t.toString())
             }
 
         })

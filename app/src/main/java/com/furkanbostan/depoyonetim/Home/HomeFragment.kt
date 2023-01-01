@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.furkanbostan.depoyonetim.API.ApiUtils
 import com.furkanbostan.depoyonetim.R
 import com.furkanbostan.depoyonetim.ViewModel.CityViewModel
+import com.furkanbostan.depoyonetim.ViewModel.ProductViewModel
 import com.furkanbostan.depoyonetim.ViewModel.StoreViewModel
 import com.furkanbostan.depoyonetim.ViewModel.WalletViewModel
 import com.furkanbostan.depoyonetim.databinding.FragmentHomeBinding
@@ -21,7 +22,7 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    private var binding: FragmentHomeBinding?=null
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
@@ -41,7 +42,7 @@ class HomeFragment : Fragment() {
         }
 
 getStore()
-
+getAllProduct()
 
     }
 
@@ -64,7 +65,44 @@ getStore()
             }
 
             override fun onFailure(call: Call<List<StoreViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getStoreHome",t.toString())
+            }
+
+        })
+    }
+
+    fun getAllProduct(){
+        val prodGetir= ApiUtils.getProductDaoInterface()
+        val product_temp = prodGetir.productGetir()
+        product_temp.enqueue(object : Callback<List<ProductViewModel>>{
+            override fun onResponse(call: Call<List<ProductViewModel>>, response: Response<List<ProductViewModel>>) {
+                if (response!=null){
+                    val productList = response.body()
+                    var purchaseTemp=0
+                    var saleTemp = 0
+                    var quantity=0
+
+                    if (productList != null) {
+                        for (k in productList){
+                            for (i in k.Purchases){
+                                purchaseTemp +=i.Quantity
+                            }
+                            for (j in k.Sales){
+                                saleTemp +=j.Quantity
+                            }
+                            if (purchaseTemp-saleTemp>0){
+                                quantity+= purchaseTemp-saleTemp
+                            }
+
+
+                        }
+                        binding.tvTotalQuantity.setText(quantity.toString())
+
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<ProductViewModel>>, t: Throwable) {
+                Log.d("product«ek",t.toString())
             }
 
         })

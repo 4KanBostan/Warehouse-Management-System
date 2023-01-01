@@ -81,7 +81,7 @@ class StoreFragment : Fragment() {
 
         binding.fabAdd.setOnClickListener{
             onaAddFABClicked()
-           // test1()
+
         }
 
         binding.fabBuy.setOnClickListener{
@@ -168,34 +168,32 @@ class StoreFragment : Fragment() {
     }
 
 
-    fun filteredList(text :String){
+    fun filteredList(name :String){
         lateinit var filteredList :ArrayList<StoreProductModel>
         filteredList = ArrayList<StoreProductModel>()
 
-            if (text.isNullOrEmpty()){
+            if (name.isNullOrEmpty()){
                 adapter_product.setFilteredList(productArrayList)
             }else {
                 for (i in productArrayList) {
-                    if (i.name.toLowerCase() == text.toLowerCase()) {
+                    if (i.name.toLowerCase() == name.toLowerCase() || name.toLowerCase()==i.category_name.toLowerCase()) {
                         filteredList.add(i)
                     }
                 }
 
                 if (filteredList.isEmpty()) {
-                    //Toast.makeText(context,"Ürün eşleşmiyor",Toast.LENGTH_SHORT).show()
+
                 } else {
                     adapter_product.setFilteredList(filteredList)
                 }
             }
     }
 
-
     fun onaAddFABClicked(){
         setVisibility(clicked)
         setAnimation(clicked)
         clicked = !clicked
     }
-
     fun setVisibility(clicked:Boolean){
         if (!clicked){
             binding.fabBuy.visibility=View.VISIBLE
@@ -204,15 +202,12 @@ class StoreFragment : Fragment() {
             binding.fabBuy.visibility=View.INVISIBLE
             binding.fabCategoryAdd.visibility=View.INVISIBLE
         }
-
     }
     fun setAnimation(clicked:Boolean){
         if (!clicked){
             binding.fabBuy.startAnimation(fromBottom)
             binding.fabCategoryAdd.startAnimation(fromBottom)
             binding.fabAdd.startAnimation(rotateOpen)
-
-
         }else{
             binding.fabBuy.startAnimation(toBottom)
             binding.fabCategoryAdd.startAnimation(toBottom)

@@ -38,8 +38,8 @@ class EditStoreFragment : Fragment() {
         getStore()
 
         binding.btnUpdate.setOnClickListener{
-            var cityName= binding.etStoreNAme.text.toString()
-            getCityIdForUpdate(cityName)
+            var storeNAme= binding.etStoreNAme.text.toString()
+            getCityIdForUpdate(storeNAme)
         }
         binding.btnAddWallet.setOnClickListener{
             var addBalance = binding.etBakiyeEkle.text.toString().toFloat()
@@ -68,7 +68,7 @@ class EditStoreFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<StoreViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getStore",t.toString())
             }
 
         })
@@ -93,7 +93,7 @@ class EditStoreFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<CityViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getCityName",t.toString())
             }
 
         })
@@ -104,13 +104,13 @@ class EditStoreFragment : Fragment() {
         val updateWallet = wdi.updateWallet(walletId, walletModel)
         updateWallet.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Toast.makeText(context, "Bakiye eklendi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Bakiye eklendi", Toast.LENGTH_SHORT).show()
                 getStore()
                 binding.etBakiyeEkle.text.clear()
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("updateWAllet",t.toString())
             }
 
         })
@@ -134,7 +134,7 @@ class EditStoreFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<WalletViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.e("getWallet",t.toString())
             }
 
         })
@@ -146,7 +146,7 @@ class EditStoreFragment : Fragment() {
         val updateStore = sdi.updateStore(storeId,storeModel)
         updateStore.enqueue(object : Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Toast.makeText(context,"Mağaza bilgileri güncellendi",Toast.LENGTH_SHORT).show()
+
                 getStore()
             }
 
@@ -157,42 +157,22 @@ class EditStoreFragment : Fragment() {
         })
     }
 
-    fun getStoreForUpdate(){
-
-        val sdi = ApiUtils.getStoreDaoInterface()
-        val getStore = sdi.getStore()
-
-        getStore.enqueue(object : Callback<List<StoreViewModel>>{
-            override fun onResponse(call: Call<List<StoreViewModel>>, response: Response<List<StoreViewModel>>) {
-                val arrayStoreTemp = response.body()
-                val store = arrayStoreTemp!![0]
-            }
-
-            override fun onFailure(call: Call<List<StoreViewModel>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
-    fun getCityIdForUpdate(cityName:String){
+    fun getCityIdForUpdate(storeName:String){
         val cdi = ApiUtils.setCityDaoInterface()
         val getCity = cdi.sehirCagir()
         var cityId : Int? =null
         getCity.enqueue(object :Callback<List<CityViewModel>>{
             override fun onResponse(call: Call<List<CityViewModel>>, response: Response<List<CityViewModel>>) {
                 val cityListTemp = response.body()
-
+                Toast.makeText(activity,"Mağaza bilgileri güncelleniyor",Toast.LENGTH_SHORT).show()
                 for (k in cityListTemp!!){
-                    if (k.Name.trim().toLowerCase()==cityName.trim().toLowerCase()){
-                        Log.e("cityId bulundu: ",k.Id.toString())
                         cityId=k.Id
                         var cityAddress = binding.etStoreAddress.text.toString()
                         var cityDescription = ""
                         var cityPhone= binding.etStorePhone.text.toString()
-                        var storeModel = StoreModel(cityId!!, cityName,cityAddress,cityDescription,cityPhone)
+                        var storeModel = StoreModel(1, storeName,cityAddress,cityDescription,cityPhone)
                         updteStore(1, storeModel)
-                    }else Log.e("asdasd","sdfmsdfj")
+
                 }
             }
 

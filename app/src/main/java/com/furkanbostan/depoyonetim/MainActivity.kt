@@ -11,7 +11,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.furkanbostan.depoyonetim.API.ApiUtils
-import com.furkanbostan.depoyonetim.API.DepoApi
+
 import com.furkanbostan.depoyonetim.API.Interface.CityDaoInterface
 import com.furkanbostan.depoyonetim.ViewModel.CityViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
             if (navDestination.id == R.id.homeFragment) {
                 bottomNav.visibility = View.VISIBLE
             }
+            if (navDestination.id == R.id.storeFragment) {
+                bottomNav.visibility = View.VISIBLE
+            }
             if (navDestination.id == R.id.editProfilFragment) {
                 bottomNav.visibility = View.GONE
             }
@@ -55,6 +58,9 @@ class MainActivity : AppCompatActivity() {
                 bottomNav.visibility = View.GONE
             }
             if (navDestination.id == R.id.loginFragment) {
+                bottomNav.visibility = View.GONE
+            }
+            if (navDestination.id == R.id.productDetailsFragment){
                 bottomNav.visibility = View.GONE
             }
 

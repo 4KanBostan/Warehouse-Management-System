@@ -49,7 +49,12 @@ class ProductDetailsFragment : Fragment() {
         }
 
         binding.btnDetailsSale.setOnClickListener{
-            getWalletForSales()
+            val quantitySale= binding.etDetailsProdQuantity.text.toString().toInt()
+            val prodQuantity = binding.tvProdQuantity.text.toString().toInt()
+            if (prodQuantity>=quantitySale){
+                getWalletForSales()
+            }else Toast.makeText(activity,"Yeterli ürün yok",Toast.LENGTH_SHORT).show()
+
         }
     }
 
@@ -58,7 +63,7 @@ class ProductDetailsFragment : Fragment() {
         val addPurchase = pdi.addPurchase(purchasesModel)
        addPurchase.enqueue(object : Callback<Void>{
            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-               Toast.makeText(context,"Ürün satın alınmıştır",Toast.LENGTH_SHORT).show()
+               Toast.makeText(activity,"Ürün satın alınmıştır",Toast.LENGTH_SHORT).show()
                getProduct()
            }
 
@@ -74,7 +79,7 @@ class ProductDetailsFragment : Fragment() {
         val addSale = sdi.addSale(saleModel)
         addSale.enqueue(object :Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Toast.makeText(context,"Ürün satılmıştır",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Ürün satıldı",Toast.LENGTH_SHORT).show()
                 getProduct()
             }
 
@@ -172,7 +177,7 @@ class ProductDetailsFragment : Fragment() {
                         updateWallet(1,outGoingWalletModel)
                         addPurchase(purchasesModel)
                     }else{
-                        Toast.makeText(context,"Yetersiz bakiye",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity,"Yetersiz bakiye",Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -196,7 +201,6 @@ class ProductDetailsFragment : Fragment() {
                 val quantity= Integer.parseInt(binding.etDetailsProdQuantity.text.toString())
                 val totalPrice =price*quantity
                 val saleModel = SaleModel(args.productId,quantity)
-
 
                 if (arrayWAlletTemp != null) {
                     var balance =arrayWAlletTemp.first().Balance
