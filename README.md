@@ -24,8 +24,8 @@ within the application;
 :-------------------------:|:-------------------------:
 ![home image](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_234025.png )  |![warehouse page](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224350.png )
 
- Warehouse Page             |  Report Page
+ Product Details Page             |  Report Page
 :-------------------------:|:-------------------------:
-![warehouse image1](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224421.png )  |![reports page](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224434.png )
+![warehouse image1](https://github.com/4KanBostan/Warehouse-Management-System/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230102_232243.png )  |![reports page](https://github.com/4KanBostan/DepoYonetimi/blob/master/app/src/main/java/com/furkanbostan/depoyonetim/image/Screenshot_20230101_224434.png )
 
 
